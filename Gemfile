@@ -26,6 +26,12 @@ group :development, :test do
   gem 'webrat'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'spork'
+  gem 'launchy'
 end
 
 gem "mocha", :group => :test

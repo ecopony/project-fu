@@ -17,7 +17,7 @@ development:
   host: localhost
   port: 5432
 
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: pfu_test
@@ -34,3 +34,6 @@ production:
   password: password
   host: localhost
   port: 5432
+
+cucumber:
+  <<: *test
