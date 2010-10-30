@@ -1,0 +1,44 @@
+- form_for @project do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :iterations_start_on
+    %br
+    = f.text_field :iterations_start_on
+  %p
+    = f.label :project_start_date
+    %br
+    = f.date_select :project_start_date
+  %p
+    = f.label :iteration_length
+    %br
+    = f.text_field :iteration_length
+  %p
+    = f.label :estimation_unit
+    %br
+    = f.text_field :estimation_unit
+  %p
+    = f.label :unit_scale
+    %br
+    = f.text_field :unit_scale
+  %p
+    = f.label :initial_velocity
+    %br
+    = f.text_field :initial_velocity
+  %p
+    = f.label :velocity_strategy
+    %br
+    = f.text_field :velocity_strategy
+  %p
+    = f.label :points_for_other_types
+    %br
+    = f.check_box :points_for_other_types
+  %p
+    = f.label :allow_best_and_worst
+    %br
+    = f.check_box :allow_best_and_worst
+  %p
+    = f.submit
