@@ -32,6 +32,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'spork'
   gem 'launchy'
+  gem 'factory_girl_rails'
 end
 
 gem "mocha", :group => :test
