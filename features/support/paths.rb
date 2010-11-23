@@ -10,6 +10,8 @@ module NavigationHelpers
 
     when /the dashboard\s?page/
       '/'
+    when /login/
+      new_user_session_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

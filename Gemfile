@@ -6,8 +6,8 @@ gem 'rails', '3.0.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem "nifty-generators"
 gem 'haml'
+gem 'devise'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -23,6 +23,7 @@ gem 'haml'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem "nifty-generators"
   gem 'webrat'
   gem 'rspec'
   gem 'rspec-rails'

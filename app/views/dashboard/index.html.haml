@@ -1,3 +1,4 @@
 - title "project-fu"
 
-%p= link_to "Projects", projects_path
+- if user_signed_in?
+  %p= link_to "Projects", projects_path
