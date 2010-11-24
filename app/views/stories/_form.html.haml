@@ -1,0 +1,28 @@
+
+= f.error_messages
+%p
+  = f.label :title
+  %br
+  = f.text_field :title
+%p
+  = f.label :story_type
+  %br
+  = f.text_field :story_type
+%p
+  = f.label :estimate
+  %br
+  = f.text_field :estimate
+%p
+  = f.label :requested_by_id
+  %br
+  = f.text_field :requested_by_id
+%p
+  = f.label :owned_by_id
+  %br
+  = f.text_field :owned_by_id
+%p
+  = f.label :description
+  %br
+  = f.text_area :description
+%p
+  = f.submit

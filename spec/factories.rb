@@ -4,6 +4,10 @@ Factory.define :project do |p|
   p.name { Factory.next(:project_name) }
 end
 
+Factory.define :story do |s|
+  s.title { Factory.next(:title) }
+end
+
 Factory.define :user do |u|
   u.email { Factory.next(:email) }
   u.password "password"
@@ -20,4 +24,8 @@ end
 
 Factory.sequence :project_name do |n|
   "project_#{n}"
+end
+
+Factory.sequence :title do |n|
+  "A user can do something #{n} times"
 end

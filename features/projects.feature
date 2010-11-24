@@ -12,7 +12,7 @@ Feature: Manage projects
     | name |
     | Velofight |
     | Project Huxley |
-    When I go to the projects page
+    When I am on the projects page
     Then I should see "Velofight"
     Then I should see "Project Huxley"
 
@@ -37,7 +37,9 @@ Feature: Manage projects
     When I go to the projects page
     And I follow "Destroy"
     Then I should see "Successfully destroyed project."
-    
-    
-    
-  
+
+  Scenario: View projects anonymously
+    Given I am logged out
+    When I am on the projects page
+    Then I should see "You need to sign in or sign up before continuing."
+

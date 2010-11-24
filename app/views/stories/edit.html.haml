@@ -1,0 +1,9 @@
+- title "Edit Story"
+
+= form_for(@story, :url => { :action => "update" }) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
+%p
+  = link_to "Show", project_story_path(@project, @story)
+  |
+  = link_to "View All", project_stories_path(@project)

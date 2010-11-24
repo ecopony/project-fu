@@ -11,3 +11,7 @@ Given /^I am logged in as a user$/ do
   And %{I press "Sign in"}
 end
 
+Given /^I am logged out$/ do
+  Given %{I go to logout}
+end
+

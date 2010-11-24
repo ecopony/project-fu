@@ -1,0 +1,6 @@
+- title "New Story"
+
+= form_for(@story, :url => { :action => "create" }) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
+%p= link_to "Back to List", project_stories_path

@@ -1,0 +1,23 @@
+- title "#{@project.name} Stories"
+
+%table
+  %tr
+    %th Title
+    %th Story type
+    %th Estimate
+    %th Requested by
+    %th Owned by
+    %th Description
+  - for story in @stories
+    %tr
+      %td= story.title
+      %td= story.story_type
+      %td= story.estimate
+      %td= story.requested_by_id
+      %td= story.owned_by_id
+      %td= story.description
+      %td= link_to 'Show', project_story_path(@project, story)
+      %td= link_to 'Edit', edit_project_story_path(@project, story)
+      %td= link_to 'Destroy', project_story_path(@project, story), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Story", new_project_story_path

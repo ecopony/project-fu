@@ -1,0 +1,27 @@
+- title "Story"
+
+%p
+  %strong Title:
+  = @story.title
+%p
+  %strong Story Type:
+  = @story.story_type
+%p
+  %strong Estimate:
+  = @story.estimate
+%p
+  %strong Requested By:
+  = @story.requested_by_id
+%p
+  %strong Owned By:
+  = @story.owned_by_id
+%p
+  %strong Description:
+  = @story.description
+
+%p
+  = link_to "Edit", edit_project_story_path(@project, @story)
+  |
+  = link_to "Destroy", project_story_path(@project, @story), :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", project_stories_path
