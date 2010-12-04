@@ -23,6 +23,7 @@ Feature: Manage projects
 	  And I press "Create Project"
 	  Then I should see "Successfully created project."
 	  And I should see "Velofight"
+      And the project should have a creator
 	
 	  When I follow "Edit"
 	  And I fill in "Name" with "Velofight!"
