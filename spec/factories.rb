@@ -2,6 +2,7 @@ require 'factory_girl'
 
 Factory.define :project do |p|
   p.name { Factory.next(:project_name) }
+  p.creator { Factory.create(:user) }
 end
 
 Factory.define :story do |s|
