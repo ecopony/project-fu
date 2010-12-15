@@ -1,8 +1,21 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Project do
+
+  before(:each) do
+    @valid_attributes = {
+      :name => "Project name"
+    }
+  end
+  
   it "should be valid" do
-    Project.new.should be_valid
+    Project.new(@valid_attributes).should be_valid
+  end
+
+  it "should be invalid without a name" do
+    project = Project.new
+    project.should_not be_valid
+    project.errors[:name].include?("can't be blank").should be_true
   end
 
   describe "during creation" do

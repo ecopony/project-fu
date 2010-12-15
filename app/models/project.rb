@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   has_many :project_memberships
   has_many :project_members, :through => :project_memberships, :source => :user, :uniq => true
 
+  validates :name, :presence => true
+
   after_create :add_creator_as_owner
   
   attr_accessible :name,
