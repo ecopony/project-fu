@@ -7,6 +7,7 @@ end
 
 Factory.define :story do |s|
   s.title { Factory.next(:title) }
+  s.association :project
 end
 
 Factory.define :user do |u|

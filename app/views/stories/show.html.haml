@@ -1,8 +1,5 @@
-- title "Story"
+- title @story.title
 
-%p
-  %strong Title:
-  = @story.title
 %p
   %strong Story Type:
   = @story.story_type
@@ -24,4 +21,4 @@
   |
   = link_to "Destroy", project_story_path(@project, @story), :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", project_stories_path
+  = link_to "View All", project_path(@project)

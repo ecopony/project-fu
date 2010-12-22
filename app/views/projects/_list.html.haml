@@ -1,0 +1,7 @@
+
+- unless @projects.blank?
+  %ul
+  - for project in @projects
+    %li
+      =link_to(project.name, project)
+

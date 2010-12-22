@@ -1,31 +1,6 @@
 - title "Projects"
 
-%table
-  %tr
-    %th Name
-    %th Iterations start on
-    %th Project start date
-    %th Iteration length
-    %th Estimation unit
-    %th Unit scale
-    %th Initial velocity
-    %th Velocity strategy
-    %th Points for other types
-    %th Allow best and worst
-  - for project in @projects
-    %tr
-      %td= project.name
-      %td= project.iterations_start_on
-      %td= project.project_start_date
-      %td= project.iteration_length
-      %td= project.estimation_unit
-      %td= project.unit_scale
-      %td= project.initial_velocity
-      %td= project.velocity_strategy
-      %td= project.points_for_other_types
-      %td= project.allow_best_and_worst
-      %td= link_to 'Show', project
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+= render :partial => 'projects/list'
 
 %p= link_to "New Project", new_project_path
+

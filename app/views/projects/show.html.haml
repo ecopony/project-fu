@@ -1,39 +1,5 @@
-- title "Project"
+- title @project.name
 
-%p
-  %strong Name:
-  = @project.name
-%p
-  %strong Iterations Start On:
-  = @project.iterations_start_on
-%p
-  %strong Project Start Date:
-  = @project.project_start_date
-%p
-  %strong Iteration Length:
-  = @project.iteration_length
-%p
-  %strong Estimation Unit:
-  = @project.estimation_unit
-%p
-  %strong Unit Scale:
-  = @project.unit_scale
-%p
-  %strong Initial Velocity:
-  = @project.initial_velocity
-%p
-  %strong Velocity Strategy:
-  = @project.velocity_strategy
-%p
-  %strong Points For Other Types:
-  = @project.points_for_other_types
-%p
-  %strong Allow Best And Worst:
-  = @project.allow_best_and_worst
+= render :partial => 'stories/list'
 
-%p
-  = link_to "Edit", edit_project_path(@project)
-  |
-  = link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", projects_path
+%p= link_to "New Story", new_project_story_path(@project)

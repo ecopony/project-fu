@@ -1,4 +1,4 @@
-- title "Edit Story"
+- title "Edit '#{@story.title}'"
 
 = form_for(@story, :url => { :action => "update" }) do |f|
   = render :partial => 'form', :locals => { :f => f }

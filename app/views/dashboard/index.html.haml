@@ -1,4 +1,6 @@
 - title "project-fu"
 
 - if user_signed_in?
-  %p= link_to "Projects", projects_path
+  = render :partial => 'projects/list'
+
+  %p= link_to "New Project", new_project_path

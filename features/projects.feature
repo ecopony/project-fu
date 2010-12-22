@@ -16,7 +16,7 @@ Feature: Manage projects
     Then I should see "Velofight"
     Then I should see "Project Huxley"
 
-  Scenario: Create and edit a project
+  Scenario: Create a project
     Given I am on the projects page
     When I follow "New Project"
 	  And I fill in "Name" with "Velofight"
@@ -24,20 +24,16 @@ Feature: Manage projects
 	  Then I should see "Successfully created project."
 	  And I should see "Velofight"
       And the project should have a creator
-	
-	  When I follow "Edit"
-	  And I fill in "Name" with "Velofight!"
-	  And I press "Update Project"
-	  Then I should see "Successfully updated project."
-    And I should see "Velofight!"
 
-  Scenario: Deleting a project
-    Given the following projects exist
-    | name |
-    | Velofight |
-    When I go to the projects page
-    And I follow "Destroy"
-    Then I should see "Successfully destroyed project."
+  Scenario: View project stories on the project page
+    Given there is a project named Velofight
+    And the following stories exist
+    | title |
+    | A user can log in |
+    | A user can register for an account |
+    When I am on the project page
+    Then I should see "A user can log in"
+    And I should see "A user can register for an account"
 
   Scenario: View projects anonymously
     Given I am logged out

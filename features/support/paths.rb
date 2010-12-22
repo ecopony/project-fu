@@ -17,6 +17,9 @@ module NavigationHelpers
     when /logout/
       destroy_user_session_path
 
+    when /the project page/
+      project_path(@project)
+
     when /the project stories page/
       project_stories_path(@project)
 
