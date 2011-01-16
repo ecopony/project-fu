@@ -6,9 +6,9 @@ Feature: User navigation
   Scenario: Navigate back to the dashboard
     Given there is a project named Velofight
     When I am on the projects page
-    Then I should see "Dashboard"
+    Then I should see "project-fu"
 
-    When I follow "Dashboard"
+    When I follow "project-fu"
     Then I should be on the dashboard page
 
   Scenario: Navigate back to projects from stories
@@ -18,8 +18,8 @@ Feature: User navigation
     | A user can log in |
     | A user can register for an account |
     When I am on the the project stories page
-    Then I should see "Dashboard"
+    Then I should see "project-fu"
 
-    When I follow "Dashboard"
+    When I follow "project-fu"
     Then I should be on the dashboard page
   

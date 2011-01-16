@@ -1,0 +1,9 @@
+
+#project-nav.span-24.last
+
+  %span.project-name
+    = @project.name
+  = link_to("Stories", project_path(@project))
+  = link_to("Settings", settings_project_path(@project))
+  Members
+  Reports

@@ -2,6 +2,9 @@ ProjectFu::Application.routes.draw do
   devise_for :users
 
   resources :projects do
+    member do
+      get 'settings'
+    end
     resources :stories
   end
 

@@ -69,3 +69,13 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+.project-name {
+  color: #000;
+  font-size: 200%;
+}
+
+#project-nav {
+  font-size: 90%;
+  color: #999;
+}

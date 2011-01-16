@@ -25,6 +25,15 @@ Feature: Manage projects
 	  And I should see "Velofight"
       And the project should have a creator
 
+  Scenario: Edit a project
+    Given there is a project named Velofight
+    And I am on the project page
+    When I follow "Settings"
+	  And I fill in "Name" with "Velofight!"
+	  And I press "Update Project"
+	  Then I should see "Successfully updated project."
+	  And I should see "Velofight!"
+
   Scenario: View project stories on the project page
     Given there is a project named Velofight
     And the following stories exist

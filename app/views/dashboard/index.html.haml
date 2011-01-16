@@ -1,6 +1,7 @@
-- title "project-fu"
+- title "project-fu", false
 
 - if user_signed_in?
+  %h2 Projects
   = render :partial => 'projects/list'
 
   %p= link_to "New Project", new_project_path
