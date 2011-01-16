@@ -4,6 +4,10 @@ body {
   font-size: 12px;
 }
 
+#main {
+  padding-top: 7px;
+}
+
 a img {
   border: none;
 }
@@ -18,14 +22,6 @@ a {
   overflow: hidden;
 }
 
-#container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
-}
 
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;

@@ -4,21 +4,26 @@
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "jquery-ui-1.8.6.custom" %>
+
+    <%= stylesheet_link_tag 'blueprint/screen.css', :type => "text/css", :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'blueprint/print.css', :type => "text/css", :media => "print" %>
+    <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+
     <%= javascript_include_tag 'rails' %>
     <%= javascript_include_tag 'jquery-1.4.4.min' %>
     <%= javascript_include_tag 'jquery-ui-1.8.6.custom.min' %>
     <%= javascript_include_tag 'application' %>
-    
+
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="container">
-      <div id="top-nav">
-        <%= link_to 'Dashboard', root_path, { :id => 'nav-dashboard' } %>
+    <div id="main" class="container">
+      <div id="header" class="span-16">
+        <h1><a href="/">project-fu</a></h1>
       </div>
-      
-      <div id="user_nav">
+
+      <div id="user_nav" class="span-8 last">
         <% if user_signed_in? %>
           Signed in as <%= current_user.email %>.
           <%= link_to "Sign out", destroy_user_session_path %>
@@ -26,12 +31,19 @@
           <%= link_to "Sign up", new_user_registration_path %> or
           <%= link_to "Sign in", new_user_session_path %>
         <% end %>
-      </div>  
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>
+      </div>
+
+      <div id="title" class="span-24 last">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        <%= content_tag :h3, yield(:title) if show_title? %>
+      </div>
+
+      <div id="content" class="span-24 last">
+        <%= yield %>
+      </div>
+      
     </div>
   </body>
 </html>
