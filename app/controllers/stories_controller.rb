@@ -47,9 +47,4 @@ class StoriesController < ApplicationController
     redirect_to project_stories_url(@project)
   end
 
-  private
-
-  def load_project
-    @project = Project.find(params[:project_id])
-  end
 end
