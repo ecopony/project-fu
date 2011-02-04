@@ -7,22 +7,26 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true
 
   after_create :add_creator_as_owner
-  
+
   attr_accessible :name,
-    :iterations_start_on,
-    :project_start_date,
-    :iteration_length,
-    :estimation_unit,
-    :unit_scale,
-    :initial_velocity,
-    :velocity_strategy,
-    :points_for_other_types,
-    :allow_best_and_worst
+                  :iterations_start_on,
+                  :project_start_date,
+                  :iteration_length,
+                  :estimation_unit,
+                  :unit_scale,
+                  :initial_velocity,
+                  :velocity_strategy,
+                  :points_for_other_types,
+                  :allow_best_and_worst
+
+  def owners
+    project_memberships.where(["role = ?", "owner"]).collect { |membership| membership.user }
+  end
 
   private
 
   def add_creator_as_owner
     project_memberships.create(:user => creator, :role => "owner") if creator
   end
-  
+
 end
