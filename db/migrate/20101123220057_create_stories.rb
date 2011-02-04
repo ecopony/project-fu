@@ -1,13 +1,13 @@
 class CreateStories < ActiveRecord::Migration
   def self.up
     create_table :stories do |t|
-      t.string :title
-      t.string :story_type
+      t.string :title, :null => false
+      t.string :story_type, :null => false
       t.integer :estimate
-      t.integer :requested_by_id
+      t.integer :requested_by_id, :null => false
       t.integer :owned_by_id
       t.text :description
-      t.integer :project_id
+      t.integer :project_id, :null => false
       t.timestamps
     end
 

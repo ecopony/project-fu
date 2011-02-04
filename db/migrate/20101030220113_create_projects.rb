@@ -1,7 +1,7 @@
 class CreateProjects < ActiveRecord::Migration
   def self.up
     create_table :projects do |t|
-      t.string :name
+      t.string :name, :null => false
       t.string :iterations_start_on
       t.date :project_start_date
       t.integer :iteration_length
