@@ -1,0 +1,18 @@
+- if current_user.is_a_owner_of?(@project)
+  #create_membership_form
+    = form_for([@project, @project_membership]) do |f|
+      = f.error_messages
+
+      %p
+        = f.label :user_id
+        %br
+        = f.collection_select(:user_id, User.eligible_for_membership_to(@project), :id, :email, { :include_blank => true })
+      %p
+        = f.label :role
+        %br
+        = f.select(:role, ProjectMembership.role_array, { :include_blank => true })
+      %p
+        = f.submit
+
+      %br
+      %br

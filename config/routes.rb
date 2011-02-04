@@ -6,6 +6,7 @@ ProjectFu::Application.routes.draw do
       get 'settings'
     end
     resources :stories
+    resources :project_memberships
   end
 
   # The priority is based upon order of creation:

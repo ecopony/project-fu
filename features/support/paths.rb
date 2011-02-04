@@ -23,6 +23,9 @@ module NavigationHelpers
     when /the project stories page/
       project_stories_path(@project)
 
+    when /the project settings page/
+      settings_project_path(@project)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
