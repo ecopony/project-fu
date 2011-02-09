@@ -14,6 +14,8 @@ Feature: Project members
     And I select "Member" from "Role"
     And I press "Create Project membership"
     Then I should see "Successfully created project membership."
+    And I should see "bob@example.com" within "div#project_members"
+    And I should see "Member" within "div#project_members"
 
   Scenario: Project member (non-owner) can't add a project member
     Given I am logged in as a project member
@@ -21,8 +23,20 @@ Feature: Project members
     And I follow "Members"
     Then I should not see form fields for adding members
 
+  Scenario: Project member (non-owner) can see the project members
+    Given I am logged in as a project member
+    When I am on the project settings page
+    And I follow "Members"
+    Then I should see "Project Members" within "div#project_members"
+  
   Scenario: Non-member can't add a project member
     Given I am logged in as a user
     When I am on the project settings page
     And I follow "Members"
     Then I should not see form fields for adding members
+
+  Scenario: Non-member can't see the project members
+    Given I am logged in as a user
+    When I am on the project settings page
+    And I follow "Members"
+    Then I should not see "Project Members"

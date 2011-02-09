@@ -1,0 +1,5 @@
+- if current_user.is_a_member_of?(@project) && !@project.project_members.empty?
+  #project_members
+    %h3 Project Members
+    %ul
+      = render :partial => 'membership', :collection => @project.project_memberships
