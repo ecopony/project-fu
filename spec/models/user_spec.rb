@@ -42,6 +42,19 @@ describe User do
       end
     end
 
+    describe "project membership status" do
+
+      it "should return true if the user is a member of the project" do
+        @project_creator.is_a_member_of?(@project).should be_true
+        @project_member.is_a_member_of?(@project).should be_true
+      end
+
+      it "should return false if the user is not a member of the project" do
+        @non_member.is_a_member_of?(@project).should be_false       
+      end
+
+    end
+
   end
 
 end
