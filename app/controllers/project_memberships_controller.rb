@@ -1,6 +1,7 @@
 class ProjectMembershipsController < ApplicationController
 
   before_filter :load_project
+  before_filter :user_is_project_owner?, :only => :create
 
   def index
     @project_membership = ProjectMembership.new
