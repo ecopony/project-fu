@@ -9,6 +9,11 @@ Given /^there is a project named (.+)$/ do |project_name|
   @project = Factory.create(:project, :name => project_name)
 end
 
+Given /^I am a member of project "([^"]*)"$/ do |project_name|
+  project = Project.find_by_name(project_name)
+  project.project_memberships << ProjectMembership.create(:user => @user, :role => 'member')
+end
+
 Then /^the project should have a creator$/ do
   Project.first.creator.should_not be_nil
 end

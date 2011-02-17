@@ -8,7 +8,7 @@ Feature: Project members
     
   Scenario: Project owner can add a project member as a member
     Given I am logged in as a project owner
-    When I am on the project settings page
+    When I am on the project page
     And I follow "Members"
     And I select "bob@example.com" from "User"
     And I select "Member" from "Role"
@@ -19,24 +19,20 @@ Feature: Project members
 
   Scenario: Project member (non-owner) can't add a project member
     Given I am logged in as a project member
-    When I am on the project settings page
-    And I follow "Members"
+    When I am on the project members page
     Then I should not see form fields for adding members
 
   Scenario: Project member (non-owner) can see the project members
     Given I am logged in as a project member
-    When I am on the project settings page
-    And I follow "Members"
+    When I am on the project members page
     Then I should see "Project Members" within "div#project_members"
   
   Scenario: Non-member can't add a project member
     Given I am logged in as a user
-    When I am on the project settings page
-    And I follow "Members"
+    When I am on the project members page
     Then I should not see form fields for adding members
 
   Scenario: Non-member can't see the project members
     Given I am logged in as a user
-    When I am on the project settings page
-    And I follow "Members"
+    When I am on the project members page
     Then I should not see "Project Members"

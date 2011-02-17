@@ -19,6 +19,13 @@ class Project < ActiveRecord::Base
                   :points_for_other_types,
                   :allow_best_and_worst
 
+  class << self
+    def all_for_user(user)
+      return [] if user.nil?
+      Project.joins(:project_memberships).where(["user_id = ?", user.id])
+    end
+  end
+
   def owners
     project_memberships.where(["role = ?", "owner"]).collect { |membership| membership.user }
   end

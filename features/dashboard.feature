@@ -22,8 +22,9 @@ Feature: User dashboard
     | name |
     | Velofight |
     | Project Huxley |
+    And I am a member of project "Velofight"
     When I am on the dashboard page
     Then I should see "project-fu"
     And I should see "Velofight"
-    And I should see "Project Huxley"
+    And I should not see "Project Huxley"
   

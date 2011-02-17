@@ -26,6 +26,9 @@ module NavigationHelpers
     when /the project settings page/
       settings_project_path(@project)
 
+    when /the project members page/
+      project_project_memberships_path(@project)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

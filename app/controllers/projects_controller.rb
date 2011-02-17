@@ -1,12 +1,14 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  
+  before_filter :load_project, :only => [:show, :edit, :update, :destroy, :settings]
+  before_filter :user_is_project_member?, :only => [:show]
+  before_filter :user_is_project_owner?, :only => [:edit, :update, :destroy, :settings]
+
   def index
-    @projects = Project.all
+    @projects = Project.all_for_user(current_user)
   end
   
   def show
-    @project = Project.find(params[:id])
   end
   
   def new
@@ -26,11 +28,9 @@ class ProjectsController < ApplicationController
   end
   
   def edit
-    @project = Project.find(params[:id])
   end
   
   def update
-    @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
       flash[:notice] = "Successfully updated project."
       redirect_to @project
@@ -40,13 +40,11 @@ class ProjectsController < ApplicationController
   end
   
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
     flash[:notice] = "Successfully destroyed project."
     redirect_to projects_url
   end
 
   def settings
-    @project = Project.find(params[:id])
   end
 end

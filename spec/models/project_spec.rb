@@ -56,4 +56,27 @@ describe Project do
     
   end
 
+  describe "retrieving a user's projects" do
+
+    before(:each) do
+      @member = Factory.create(:user)
+      @non_member = Factory.create(:user)
+      @another_project = Factory.create(:project)
+      2.times { Factory.create(:project).project_memberships.create(:user => @member, :role => 'member') }
+    end
+
+    it "should return all projects to which the user belongs" do
+      Project.all_for_user(@member).size.should == 2
+    end
+
+    it "should return an empty array if the user doesn't belong to any projects" do
+      Project.all_for_user(@non_member).should be_empty
+    end
+
+    it "should return an empty array if passed nil" do
+      Project.all_for_user(nil).should be_empty
+    end
+
+  end
+
 end
