@@ -2,6 +2,7 @@ class StoriesController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :load_project
+  before_filter :user_is_project_member?
   
   def index
     @stories = Story.all

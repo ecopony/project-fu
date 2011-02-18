@@ -1,11 +1,11 @@
 Feature: Manage stories
 
   Background:
-    Given I am logged in as a user
-    And there is a project named Velofight
+    Given there is a project named Velofight
 
-  Scenario: Stories list
-    Given the following stories exist
+  Scenario: Stories list visibile to project members
+    Given I am logged in as a project member
+    And the following stories exist
     | title |
     | A user can log in |
     | A user can register for an account |
@@ -14,8 +14,18 @@ Feature: Manage stories
     And I should see "A user can log in"
     And I should see "A user can register for an account"
 
-  Scenario: Create and edit a story
-    Given I am on the the project stories page
+  Scenario: Stories list not visibile to non-members
+    Given I am logged in as a user
+    And the following stories exist
+    | title |
+    | A user can log in |
+    | A user can register for an account |
+    When I am on the the project stories page
+    Then I should see "You are not permitted to complete this action"
+
+  Scenario: Create and edit a story as a project member
+    Given I am logged in as a project member
+    And I am on the the project stories page
     When I follow "New Story"
 	And I fill in "Title" with "A user can log in"
 	And I press "Create Story"
@@ -29,7 +39,8 @@ Feature: Manage stories
     And I should see "A user can login"
 
   Scenario: Deleting a story
-    Given the following stories exist
+    Given I am logged in as a project member
+    And the following stories exist
     | title |
     | A user can log in |
     When I am on the the project stories page
