@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207180306) do
+ActiveRecord::Schema.define(:version => 20110227190737) do
 
   create_table "project_memberships", :force => true do |t|
     t.integer  "project_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20101207180306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
+    t.boolean  "private",                :default => false
   end
 
   add_index "projects", ["creator_id"], :name => "index_projects_on_creator_id"

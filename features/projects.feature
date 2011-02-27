@@ -35,6 +35,15 @@ Feature: Manage projects
 	  Then I should see "Successfully updated project."
 	  And I should see "Velofight!"
 
+  Scenario: Make the project private
+    Given there is a project named Sparrowhawk
+    And I am logged in as a project owner
+    And I am on the project page
+    When I follow "Settings"
+    And I check "Private"
+    And I press "Update Project"
+    Then I should see "Successfully updated project."
+    
   Scenario: Non-owners should not be able to edit project settings
     Given there is a project named Velofight
     And I am logged in as a project member

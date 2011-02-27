@@ -17,7 +17,8 @@ class Project < ActiveRecord::Base
                   :initial_velocity,
                   :velocity_strategy,
                   :points_for_other_types,
-                  :allow_best_and_worst
+                  :allow_best_and_worst,
+                  :private
 
   class << self
     def all_for_user(user)
