@@ -1,6 +1,6 @@
 - title "project-fu", false
 
-- if user_signed_in?
+- if current_user
   %h2 Projects
   = render :partial => 'projects/list'
 

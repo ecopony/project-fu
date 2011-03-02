@@ -11,11 +11,14 @@ module NavigationHelpers
     when /the dashboard\s?page/
       '/'
 
+    when /the home page/
+      '/'
+
     when /login/
-      new_user_session_path
+      login_path
 
     when /logout/
-      destroy_user_session_path
+      logout_path
 
     when /the project page/
       project_path(@project)

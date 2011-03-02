@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :require_user
   before_filter :load_project, :only => [:show, :edit, :update, :destroy, :settings]
   before_filter :user_is_project_member?, :only => [:show]
   before_filter :user_is_project_owner?, :only => [:edit, :update, :destroy, :settings]

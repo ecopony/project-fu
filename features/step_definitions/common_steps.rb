@@ -34,11 +34,20 @@ end
 
 Given /^login happens/ do
   Given %{I go to login}
-  And %{I fill in "user_email" with "#{@user.email}"}
-  And %{I fill in "user_password" with "#{@user.password}"}
+  And %{I fill in "Login" with "#{@user.login}"}
+  And %{I fill in "Password" with "#{@user.password}"}
   And %{I press "Sign in"}
 end
 
 Given /^I am logged out$/ do
   Given %{I go to logout}
 end
+
+Given(/^I have a user "([^\"]*)" identified by "([^\"]*)"$/) do |login, password|
+  @user = Factory.create(:user,
+    :login => login,
+    :password => password,
+    :password_confirmation => password
+  )
+end
+

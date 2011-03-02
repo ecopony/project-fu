@@ -1,0 +1,10 @@
+%h3=@user.usernam
+%p
+  ="#{@user.full_name}<br/>" if (@user.show_real_name && !@user.full_name.blank?)
+  ="Member since #{@user.created_at.strftime("%B, %Y")}"
+  %br
+  = pluralize(@user.rosters.size, "roster")
+
+%h3 Rosters
+= render_user_rosters(@user)
+    

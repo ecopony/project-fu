@@ -1,0 +1,22 @@
+= form_for @user do |form|
+  = form.error_messages
+  
+  %p
+    = form.label :login
+    %br
+    = form.text_field :login
+  %p
+    = form.label :email, "Email"
+    %br
+    = form.text_field :email
+  %p
+    = form.label :password, "Password"
+    %br
+    = form.password_field :password
+  %p
+    = form.label :password_confirmation, "Password confirmation"
+    %br
+    = form.password_field :password_confirmation
+
+  %br
+  = form.submit "Submit"

@@ -2,7 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Story do
   it "should be valid" do
-    Story.new( :title => "A user can login" ).should be_valid
+    Story.new( :title => "A user can login",
+               :story_type => "Story",
+               :requested_by_id => Factory.create(:user).id
+    ).should be_valid
   end
 
   it "should be invalid without a title" do

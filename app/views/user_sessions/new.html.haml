@@ -1,0 +1,19 @@
+
+%h2
+  Login
+
+= form_for @user_session do |form|
+  = form.error_messages
+
+  %p
+    = form.label :login
+    %br
+    = form.text_field :login
+
+  %p
+    = form.label :password
+    %br
+    = form.password_field :password
+    %br
+
+  = form.submit "Sign in"

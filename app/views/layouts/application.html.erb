@@ -25,12 +25,12 @@
       </div>
 
       <div id="user_nav" class="span-8 last">
-        <% if user_signed_in? %>
-          Signed in as <%= current_user.email %>.
-          <%= link_to "Sign out", destroy_user_session_path %>
+        <% if current_user %>
+          Signed in as <%= current_user.login %>.
+          <%= link_to "Sign out", logout_path %>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path %> or
-          <%= link_to "Sign in", new_user_session_path %>
+          <%= link_to "Sign up", new_user_path %> or
+          <%= link_to "Sign in", login_path %>
         <% end %>
       </div>
 

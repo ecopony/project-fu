@@ -7,7 +7,7 @@ gem 'rails', '3.0.3'
 
 gem 'pg'
 gem 'haml'
-gem 'devise'
+gem 'authlogic', :git => 'https://github.com/railsware/authlogic.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -23,6 +23,7 @@ gem 'devise'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'rails3-generators'
   gem "nifty-generators"
   gem 'webrat'
   gem 'rspec'

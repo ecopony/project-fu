@@ -65,5 +65,5 @@ Feature: Manage projects
   Scenario: View projects anonymously
     Given I am logged out
     When I am on the projects page
-    Then I should see "You need to sign in or sign up before continuing."
+    Then I should see "You must be logged in to access this page"
 

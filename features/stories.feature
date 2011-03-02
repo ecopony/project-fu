@@ -28,6 +28,8 @@ Feature: Manage stories
     And I am on the the project stories page
     When I follow "New Story"
 	And I fill in "Title" with "A user can log in"
+	And I fill in "Story type" with "Story"
+	And I fill in "Requested by" with "1"
 	And I press "Create Story"
 	Then I should see "Successfully created story."
 	And I should see "A user can log in"
@@ -50,7 +52,6 @@ Feature: Manage stories
   Scenario: View stories anonymously
     Given I am logged out
     When I am on the the project stories page
-    Then I should see "You need to sign in or sign up before continuing."
-    
+    Then I should see "You must be logged in to access this page"
     
   
