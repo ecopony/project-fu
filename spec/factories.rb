@@ -7,7 +7,7 @@ end
 
 Factory.define :story do |s|
   s.title { Factory.next(:title) }
-  s.story_type "Story"
+  s.story_type "story"
   s.requested_by { Factory.create(:user) }
   s.association :project
 end

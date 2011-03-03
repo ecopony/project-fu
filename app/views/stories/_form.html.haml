@@ -7,7 +7,7 @@
 %p
   = f.label :story_type
   %br
-  = f.text_field :story_type
+  = f.select(:story_type, Story.story_type_array, { :include_blank => true })
 %p
   = f.label :estimate
   %br

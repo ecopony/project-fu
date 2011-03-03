@@ -6,5 +6,23 @@ class Story < ActiveRecord::Base
   validates :requested_by_id, :presence => true
   validates :story_type, :presence => true
 
+  class << self
+    def story_type_array
+      [
+          ["Story", "story"],
+          ["Epic", "epic"],
+          ["Chore", "chore"],
+          ["Defect", "defect"],
+          ["Dive", "dive"]
+      ]
+    end
+
+    def valid_story_types
+      @valid_story_types ||= story_type_array.map { |story_type| story_type.last }
+    end
+  end
+
+  validates_inclusion_of :story_type, :in => self.valid_story_types, :message => "is not valid"
+
   attr_accessible :title, :story_type, :estimate, :owned_by_id, :requested_by_id, :description
 end
