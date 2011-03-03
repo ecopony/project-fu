@@ -8,10 +8,10 @@
   = @story.estimate
 %p
   %strong Requested By:
-  = @story.requested_by_id
+  = @story.requested_by.login
 %p
   %strong Owned By:
-  = @story.owned_by_id
+  = @story.owned_by.login unless @story.owned_by.nil?
 %p
   %strong Description:
   = @story.description

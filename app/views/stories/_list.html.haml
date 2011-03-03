@@ -16,8 +16,8 @@
         %td= story.title
         %td= story.story_type
         %td= story.estimate
-        %td= story.requested_by_id
-        %td= story.owned_by_id
+        %td= story.requested_by.login
+        %td= story.owned_by.login unless story.owned_by.nil?
         %td= story.description
         %td= link_to 'Show', project_story_path(@project, story)
         %td= link_to 'Edit', edit_project_story_path(@project, story)

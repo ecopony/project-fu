@@ -1,6 +1,5 @@
 Given /^I am logged in as a user$/ do
   @user = Factory.create(:user,
-                         :email => "testuser@project-fu.com",
                          :password => "user_password",
                          :password_confirmation => "user_password"
   )
@@ -10,7 +9,6 @@ end
 
 Given /^I am logged in as a project owner$/ do
   @user = Factory.create(:user,
-                         :email => "testuser@project-fu.com",
                          :password => "user_password",
                          :password_confirmation => "user_password"
   )
@@ -22,7 +20,6 @@ end
 
 Given /^I am logged in as a project member$/ do
   @user = Factory.create(:user,
-                         :email => "testuser@project-fu.com",
                          :password => "user_password",
                          :password_confirmation => "user_password"
   )

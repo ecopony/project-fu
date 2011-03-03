@@ -7,7 +7,7 @@
 %p
   = f.label :story_type
   %br
-  = f.select(:story_type, Story.story_type_array, { :include_blank => true })
+  = f.select(:story_type, Story.story_type_array)
 %p
   = f.label :estimate
   %br
@@ -15,11 +15,11 @@
 %p
   = f.label :requested_by_id
   %br
-  = f.text_field :requested_by_id
+  = f.collection_select(:requested_by_id, @project.project_members, :id, :login, { :selected => (@story.requested_by_id || current_user.id), :include_blank => true})
 %p
   = f.label :owned_by_id
   %br
-  = f.text_field :owned_by_id
+  = f.collection_select(:owned_by_id, @project.project_members, :id, :login, { :include_blank => true })
 %p
   = f.label :description
   %br

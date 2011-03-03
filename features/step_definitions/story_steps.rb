@@ -5,3 +5,7 @@ Given /^the following stories exist$/ do |table|
    end
 end
 
+Then /^the requested by user should be the current user$/ do
+  page.should have_content("Requested By: #{@user.login}")
+end
+
