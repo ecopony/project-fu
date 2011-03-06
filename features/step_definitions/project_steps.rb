@@ -9,9 +9,9 @@ Given /^there is a project named (.+)$/ do |project_name|
   @project = Factory.create(:project, :name => project_name)
 end
 
-Given /^I am a member of project "([^"]*)"$/ do |project_name|
+Given /^I am a (.*) of project "([^"]*)"$/ do |role, project_name|
   project = Project.find_by_name(project_name)
-  project.project_memberships << ProjectMembership.create(:user => @user, :role => 'member')
+  project.project_memberships << ProjectMembership.create(:user => @user, :role => role)
 end
 
 Given /^there is a project member with the login "([^"]*)"$/ do |login|

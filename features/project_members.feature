@@ -47,3 +47,4 @@ Feature: Project members
     Given I am logged in as a user
     When I am on the project members page
     Then I should not see "Project Members"
+
