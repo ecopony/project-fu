@@ -47,11 +47,16 @@ describe ProjectMembership do
 
   it "should be valid with a valid role of 'viewer'" do
     attributes = @valid_attributes.merge(:role => 'viewer')
+    ProjectMembership.new(attributes).should be_valid
+  end
+
+  it "should not be valid with an unknown role" do
+    attributes = @valid_attributes.merge(:role => 'lackey')
     ProjectMembership.new(attributes).should_not be_valid
   end
 
   it "should display a meaningful error message when the role is not valid" do
-    attributes = @valid_attributes.merge(:role => 'viewer')
+    attributes = @valid_attributes.merge(:role => 'lackey')
     project_membership = ProjectMembership.create(attributes)
     project_membership.errors[:role].include?("is not valid").should be_true
   end
@@ -64,7 +69,7 @@ describe ProjectMembership do
 
     it "should return the two project roles" do
       roles = ProjectMembership.role_array
-      roles.size.should == 2
+      roles.size.should == 3
     end
 
   end

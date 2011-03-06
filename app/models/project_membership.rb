@@ -10,7 +10,8 @@ class ProjectMembership < ActiveRecord::Base
     def role_array
       [
           ["Member", "member"],
-          ["Owner", "owner"]
+          ["Owner", "owner"],
+          ["Viewer", "viewer"]
       ]
     end
 
