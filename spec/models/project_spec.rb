@@ -4,7 +4,8 @@ describe Project do
 
   before(:each) do
     @valid_attributes = {
-        :name => "Project name"
+        :name => "Project name",
+        :unit_scale => "0, 1, 2, 3, 5, 8, 13, 20, 40, 100"
     }
   end
 
@@ -16,6 +17,47 @@ describe Project do
     project = Project.new
     project.should_not be_valid
     project.errors[:name].include?("can't be blank").should be_true
+  end
+
+  describe "validating unit scale" do
+    before(:each) do
+      @modified_attributes = @valid_attributes.reject { |key, value| key == :unit_scale }
+    end
+
+    it "should not be valid if blank" do
+      Project.new(@modified_attributes).should_not be_valid
+    end
+
+    it "should be valid with a comma-separated list" do
+      project = Project.new(@modified_attributes)
+      project.unit_scale = "0, 1, 2, 3, 5, 8, 13, 20, 40, 100"
+      project.should be_valid
+    end
+
+    it "should not be valid with a semi-colon separated list" do
+      project = Project.new(@modified_attributes)
+      project.unit_scale = "0; 1; 2; 3; 5; 8; 13; 20; 40; 100"
+      project.should_not be_valid
+    end
+
+    it "should not be valid if no comma is present" do
+      project = Project.new(@modified_attributes)
+      project.unit_scale = "0 1 2 3 5 8 13 20 40 100"
+      project.should_not be_valid
+    end
+
+    it "should not be valid if any of the values are not an integer" do
+      project = Project.new(@modified_attributes)
+      project.unit_scale = "0, A, 2, 3, 5, 8, 13, 20, 40, 100"
+      project.should_not be_valid
+    end
+
+    it "should not be valid if there is a trailing comma" do
+      project = Project.new(@modified_attributes)
+      project.unit_scale = "0, 1, 2, 3, 5, 8, 13, 20, 40, 100,"
+      project.should_not be_valid
+    end
+
   end
 
   describe "during creation" do
@@ -53,7 +95,7 @@ describe Project do
     it "should not return a non-member of the project" do
       @project.owners.include?(@non_member).should be_false
     end
-    
+
   end
 
   describe "retrieving a user's projects" do

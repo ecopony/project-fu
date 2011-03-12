@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Successfully updated project."
       redirect_to @project
     else
-      render :action => 'edit'
+      render :action => 'settings'
     end
   end
   
