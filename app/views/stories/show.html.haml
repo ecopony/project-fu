@@ -15,6 +15,9 @@
 %p
   %strong Description:
   = @story.description
+%p
+  %strong ID:
+  = @story.id
 
 %p
   = link_to "Edit", edit_project_story_path(@project, @story)

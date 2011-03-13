@@ -51,5 +51,17 @@ Feature: Manage stories
     Given I am logged out
     When I am on the the project stories page
     Then I should see "You must be logged in to access this page"
-    
+
+  Scenario: Viewing the story ID
+    Given I am logged in as a project member
+    And there is a story titled A user can log in
+    When I am on the the project stories page
+    Then the story ID should be visible
+
+    When I follow "Edit"
+    Then the story ID should be visible
+
+    When I press "Update Story"
+    Then the story ID should be visible
+
   
