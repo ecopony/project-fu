@@ -5,6 +5,7 @@
 
   %table
     %tr
+      %th ID
       %th Title
       %th Story type
       %th Estimate
@@ -13,6 +14,7 @@
       %th Description
     - for story in stories
       %tr
+        %td= story.id
         %td= story.title
         %td= story.story_type
         %td= story.estimate

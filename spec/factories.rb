@@ -2,6 +2,7 @@ require 'factory_girl'
 
 Factory.define :project do |p|
   p.name { Factory.next(:project_name) }
+  p.unit_scale "0, 1, 2, 3, 5, 8, 13, 20, 40, 100"
   p.creator { Factory.create(:user) }
 end
 

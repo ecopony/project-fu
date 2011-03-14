@@ -20,6 +20,7 @@ Feature: Manage projects
     And I am on the projects page
     When I follow "New Project"
 	And I fill in "Name" with "Velofight"
+    And I fill in "Unit scale" with "0, 1, 2, 3, 5, 8, 13, 20, 40, 100"
 	And I press "Create Project"
 	Then I should see "Successfully created project."
 	And I should see "Velofight"
