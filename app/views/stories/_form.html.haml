@@ -11,7 +11,7 @@
 %p
   = f.label :estimate
   %br
-  = f.text_field :estimate
+  = f.select(:estimate, @project.estimate_array, { :selected => @story.estimate, :include_blank => true })
 %p
   = f.label :requested_by_id
   %br

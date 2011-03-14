@@ -121,4 +121,12 @@ describe Project do
 
   end
 
+  describe "returning an estimate array" do
+    it "should return an array of valid estimates" do
+      project = Project.new(@valid_attributes)
+      project.estimate_array.is_a?(Array).should be_true
+      project.estimate_array.each { |estimate| estimate.is_a?(Integer).should be_true }
+    end
+  end
+
 end

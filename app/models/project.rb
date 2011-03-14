@@ -33,6 +33,10 @@ class Project < ActiveRecord::Base
     project_memberships.where(["role = ?", "owner"]).collect { |membership| membership.user }
   end
 
+  def estimate_array
+    unit_scale.strip.split(",").map { |estimate| Integer(estimate) }
+  end
+
   private
 
   def validate_unit_scale
