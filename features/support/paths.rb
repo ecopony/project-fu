@@ -32,7 +32,10 @@ module NavigationHelpers
     when /the project members page/
       project_project_memberships_path(@project)
 
-    # Add more mappings here.
+    when /the "(.*)" story's edit page/
+      @story = Story.find_by_title($1)
+      edit_project_story_path(@project, @story)
+
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i

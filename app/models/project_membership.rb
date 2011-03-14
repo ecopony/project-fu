@@ -18,6 +18,10 @@ class ProjectMembership < ActiveRecord::Base
     def valid_roles
       @valid_roles ||= role_array.map { |role| role.last }
     end
+
+    def editor_roles
+      @editor_roles ||= valid_roles.reject { |role| role == 'viewer' }
+    end
   end
 
   validates_inclusion_of :role, :in => self.valid_roles, :message => "is not valid"

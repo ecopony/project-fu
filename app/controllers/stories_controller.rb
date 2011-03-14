@@ -2,7 +2,8 @@ class StoriesController < ApplicationController
 
   before_filter :require_user
   before_filter :load_project
-  before_filter :user_is_project_member?
+  before_filter :user_can_view_project?, :only => [:index, :show]
+  before_filter :user_can_edit_project?, :except => [:index, :show]
   
   def index
     @stories = Story.all

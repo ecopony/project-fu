@@ -30,7 +30,15 @@ class Project < ActiveRecord::Base
   end
 
   def owners
-    project_memberships.where(["role = ?", "owner"]).collect { |membership| membership.user }
+    members_in_role('owner')
+  end
+
+  def view_only_members
+    members_in_role('viewer')
+  end
+
+  def editors
+    members_in_role(ProjectMembership.editor_roles)
   end
 
   def estimate_array
@@ -59,6 +67,10 @@ class Project < ActiveRecord::Base
 
   def add_creator_as_owner
     project_memberships.create(:user => creator, :role => "owner") if creator
+  end
+
+  def members_in_role(role)
+    project_members.where(:project_memberships => { :role => role })
   end
 
 end

@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
   def is_a_member_of?(project)
     project.project_members.include?(self)
   end
+
+  def is_an_editor_of?(project)
+    project.editors.include?(self)
+  end
 end

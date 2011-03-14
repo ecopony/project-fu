@@ -12,14 +12,26 @@ class ApplicationController < ActionController::Base
 
   def user_is_project_owner?
     unless current_user.is_a_owner_of?(@project)
-      render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+      render_forbidden
     end
   end
 
   def user_is_project_member?
     unless current_user.is_a_member_of?(@project)
-      render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+      render_forbidden
     end
+  end
+
+  def user_can_view_project?
+    render_forbidden unless current_user.is_a_member_of?(@project)
+  end
+
+  def user_can_edit_project?
+    render_forbidden unless current_user.is_an_editor_of?(@project)
+  end
+
+  def render_forbidden
+    render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
   end
 
   def current_user_session
