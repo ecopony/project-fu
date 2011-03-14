@@ -26,4 +26,13 @@ class Story < ActiveRecord::Base
   validates_inclusion_of :story_type, :in => self.valid_story_types, :message => "is not valid"
 
   attr_accessible :title, :story_type, :estimate, :owned_by_id, :requested_by_id, :description
+  
+  def editable_by?(user)
+    !project.view_only_members.include?(user)
+  end
+
+  def destructible_by?(user)
+    !project.view_only_members.include?(user)
+  end
+
 end

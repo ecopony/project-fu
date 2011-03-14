@@ -29,6 +29,15 @@ Given /^I am logged in as a project member$/ do
   Given %{login happens}
 end
 
+Given /^I am logged in as a project viewer$/ do
+  @user = Factory.create(:user,
+                         :password => "user_password",
+                         :password_confirmation => "user_password")
+  @project.project_memberships.create(:user => @user, :role => 'viewer')
+
+  Given %{login happens}
+end
+
 Given /^login happens/ do
   Given %{I go to login}
   And %{I fill in "Login" with "#{@user.login}"}
