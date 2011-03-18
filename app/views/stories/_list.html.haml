@@ -1,35 +1,32 @@
 
 - stories = @stories.nil? ? @project.stories : @stories
 
+
 - unless stories.empty?
 
-  %table
-    %tr
-      %th ID
-      %th Title
-      %th Story type
-      %th Estimate
-      %th Requested by
-      %th Owned by
-      %th Description
+  %ul{ :id => 'story-list' }
+
     - for story in stories
-      %tr
-        %td= story.id
-        %td= story.title
-        %td= story.story_type
-        %td= story.estimate
-        %td= story.requested_by.login
-        %td= story.owned_by.login unless story.owned_by.nil?
-        %td= story.description
-        %td= link_to 'Show', project_story_path(@project, story)
-        %td
-          - if story.editable_by?(current_user)
-            = link_to 'Edit', edit_project_story_path(@project, story)
-          - else
-            &nbsp;
-        %td
-          - if story.destructible_by?(current_user)
-            = link_to 'Destroy', project_story_path(@project, story), :confirm => 'Are you sure?', :method => :delete
-          - else
-            &nbsp;
+      %li{ :class => 'ui-state-default' }
+        %small= story.id
+        %b=story.title
+        %br
+        ="Story type: #{story.story_type}"
+        %br
+        - unless story.estimate.blank?
+          ="Estimate: #{story.estimate}"
+          %br
+        - unless story.owned_by.nil?
+          = story.owned_by.login
+        %br{ :clear => 'all' }
+        %b= link_to 'Show', project_story_path(@project, story)
+        - if story.editable_by?(current_user)
+          %b= link_to 'Edit', edit_project_story_path(@project, story)
+        - else
+          &nbsp;
+        - if story.destructible_by?(current_user)
+          %b= link_to 'Destroy', project_story_path(@project, story), :confirm => 'Are you sure?', :method => :delete
+        - else
+          &nbsp;
+        
 

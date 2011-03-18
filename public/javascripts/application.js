@@ -3,4 +3,7 @@
 
 $(function() {
   $( "a", "#top-nav" ).button();
+  $( "#story-list" ).sortable();
+  $( "#story-list" ).disableSelection();
 });
+

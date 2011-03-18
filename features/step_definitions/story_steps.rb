@@ -14,7 +14,6 @@ Then /^the requested by user should be the current user$/ do
 end
 
 Then /^the story ID should be visible$/ do
-  page.should have_content("ID")
   page.should have_content(@story.id.to_s)
 end
 
