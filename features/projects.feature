@@ -73,3 +73,8 @@ Feature: Manage projects
     When I am on the projects page
     Then I should see "You must be logged in to access this page"
 
+  Scenario: View-only users cannot see the New Story link
+    Given there is a project named Velofight
+    And I am logged in as a project viewer
+    And I am on the project page
+    Then I should not see "New Story"

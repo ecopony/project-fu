@@ -3,4 +3,4 @@
 = render :partial => 'nav'
 = render :partial => 'stories/list'
 
-%p= link_to "New Story", new_project_story_path(@project)
+%p= link_to "New Story", new_project_story_path(@project) if current_user.is_an_editor_of?(@project)
