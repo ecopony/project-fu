@@ -48,9 +48,14 @@ Feature: Manage projects
   Scenario: Non-owners should not be able to edit project settings
     Given there is a project named Velofight
     And I am logged in as a project member
-    And I am on the project page
-    And I follow "Settings"
+    And I am on the project settings page
     Then I should see "You are not permitted to complete this action"
+
+  Scenario: Non-owners should not see the Settings link
+    Given there is a project named Velofight
+    And I am logged in as a project member
+    And I am on the project page
+    Then I should not see "Settings"
 
   Scenario: View project stories on the project page
     Given there is a project named Velofight

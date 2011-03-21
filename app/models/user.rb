@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   def is_a_owner_of?(project)
     project.owners.include?(self)
   end
+  alias owns? is_a_owner_of?
 
   def is_a_member_of?(project)
     project.project_members.include?(self)
