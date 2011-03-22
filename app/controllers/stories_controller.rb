@@ -50,4 +50,7 @@ class StoriesController < ApplicationController
     redirect_to project_stories_url(@project)
   end
 
+  def reorder
+  end
+
 end

@@ -7,7 +7,7 @@
   %ul{ :id => 'story-list' }
 
     - for story in stories
-      %li{ :class => 'ui-state-default' }
+      %li{ :id => "stories_#{story.id}", :class => 'ui-state-default' }
         %small= story.id
         %b=story.title
         %br
@@ -28,5 +28,20 @@
           %b= link_to 'Destroy', project_story_path(@project, story), :confirm => 'Are you sure?', :method => :delete
         - else
           &nbsp;
-        
 
+
+:javascript
+  $("#story-list").sortable({
+    update: function(event, ui) {
+      $.ajax({
+        type: 'put',
+        data: $('#story-list').sortable('serialize'),
+        complete: function(request){
+          $('#story-list').effect('highlight');
+        },
+        url: "#{reorder_project_stories_path(@project)}"
+      })
+    }
+  });
+
+  $("#story-list").disableSelection();
