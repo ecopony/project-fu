@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227190737) do
+ActiveRecord::Schema.define(:version => 20110323033927) do
 
   create_table "project_memberships", :force => true do |t|
     t.integer  "project_id", :null => false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20110227190737) do
     t.integer  "project_id",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "stories", ["owned_by_id"], :name => "index_stories_on_owned_by_id"
