@@ -8,6 +8,9 @@ class Story < ActiveRecord::Base
   validates :requested_by_id, :presence => true
   validates :story_type, :presence => true
 
+  acts_as_list :scope => :project
+  default_scope order('position ASC')
+
   class << self
     def story_type_array
       [

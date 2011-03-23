@@ -4,7 +4,11 @@ ProjectFu::Application.routes.draw do
     member do
       get 'settings'
     end
-    resources :stories
+    resources :stories do
+      collection do
+        put 'reorder'
+      end
+    end
     resources :project_memberships
   end
 

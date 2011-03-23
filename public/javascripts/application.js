@@ -2,8 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(function() {
-  $( "a", "#top-nav" ).button();
-  $( "#story-list" ).sortable();
-  $( "#story-list" ).disableSelection();
+  $("a", "#top-nav").button();
 });
 
