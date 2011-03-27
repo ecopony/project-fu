@@ -1,0 +1,14 @@
+- div_id = "workit-#{story.id}"
+%div{ :id => div_id, :style => 'float: left; padding-right: 5px;' }
+  - if story.state == 'unstarted'
+    %b= link_to 'Start', project_story_path(@project, story, 'story[state]' => :started), :method => :put, :remote => true
+  - elsif story.state == 'started'
+    %b= link_to 'Finish', project_story_path(@project, story, 'story[state]' => :finished), :method => :put, :remote => true
+  - elsif story.state == 'finished'
+    %b= link_to 'Accept', project_story_path(@project, story, 'story[state]' => :accepted), :method => :put, :remote => true
+    \/
+    %b= link_to 'Reject', project_story_path(@project, story, 'story[state]' => :rejected), :method => :put, :remote => true
+  - elsif story.state == 'rejected'
+    %b= link_to 'Restart', project_story_path(@project, story, 'story[state]' => :started), :method => :put, :remote => true
+  - else
+    %b Completed

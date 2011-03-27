@@ -35,12 +35,16 @@ class StoriesController < ApplicationController
 
   def update
     @story = Story.find(params[:id])
-    if @story.update_attributes(params[:story])
-      flash[:notice] = "Successfully updated story."
-      redirect_to project_story_url(@project, @story)
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @story.update_attributes(params[:story])
+        flash[:notice] = "Successfully updated story."
+        format.html { redirect_to project_story_url(@project, @story) }
+        format.js {}
+      else
+        render :action => 'edit'
+      end
     end
+
   end
 
   def destroy

@@ -1,15 +1,12 @@
 
 - stories = @stories.nil? ? @project.stories : @stories
 
-
 - unless stories.empty?
-
   %ul{ :id => 'story-list' }
-
     - for story in stories
       %li{ :id => "stories_#{story.id}", :class => 'ui-state-default' }
         %small= story.id
-        %b=story.title
+        %b=link_to(story.title, project_story_path(@project, story))
         %br
         ="Story type: #{story.story_type}"
         %br
@@ -19,16 +16,19 @@
         - unless story.owned_by.nil?
           = story.owned_by.login
         %br{ :clear => 'all' }
-        %b= link_to 'Show', project_story_path(@project, story)
-        - if story.editable_by?(current_user)
-          %b= link_to 'Edit', edit_project_story_path(@project, story)
-        - else
-          &nbsp;
-        - if story.destructible_by?(current_user)
-          %b= link_to 'Destroy', project_story_path(@project, story), :confirm => 'Are you sure?', :method => :delete
-        - else
-          &nbsp;
-
+        #story-actions
+          - if story.workable_by?(current_user)
+            = render :partial => 'stories/workit', :locals => { :story => story }
+          - else
+            &nbsp;
+          - if story.editable_by?(current_user)
+            %b= link_to 'Edit', edit_project_story_path(@project, story)
+          - else
+            &nbsp;
+          - if story.destructible_by?(current_user)
+            %b= link_to 'Destroy', project_story_path(@project, story), :confirm => 'Are you sure?', :method => :delete
+          - else
+            &nbsp;
 
 :javascript
   $("#story-list").sortable({

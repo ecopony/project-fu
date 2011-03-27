@@ -1,0 +1,1 @@
+$("#workit-<%= @story.id %>").html("<%= escape_javascript(render :partial => 'workit', :locals => { :story => @story }) %>");
