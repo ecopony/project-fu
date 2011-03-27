@@ -13,7 +13,6 @@ Feature: Manage stories
     Then I should see "Velofight Stories"
     And I should see "A user can log in"
     And I should see "A user can register for an account"
-    And I should see "Show"
     And I should see "Edit"
     And I should see "Destroy"
 
@@ -61,10 +60,10 @@ Feature: Manage stories
       | title |
       | A user can log in |
     When I am on the project stories page
-    Then I should see "Show"
-    And I should not see "Edit"
+    Then I should not see "Edit"
     And I should not see "Destroy"
-    When I am on the project stories page 
+    When I follow "A user can log in"
+    Then I should be on the "A user can log in" story's show page
 
   Scenario: Editing stories as a viewer 
     Given I am logged in as a project viewer
@@ -83,5 +82,6 @@ Feature: Manage stories
     When I follow "Edit"
     Then the story ID should be visible
 
-    When I press "Update Story"
-    Then the story ID should be visible
+    # When I press "Update Story"
+    # Then I should see "ID:"
+    And the story ID should be visible

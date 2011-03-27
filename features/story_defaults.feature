@@ -19,12 +19,12 @@ Feature: Manage stories
     Then I should see "Requested By: velofighter"
 
   Scenario: Story type should default to Story
-	Then I should see "Story Type: story"
+	Then I should see "Story Type: Story"
 
   Scenario: After an edit, the story type should be the value entered
     When I follow "Edit"
     And I select "Epic" from "Story type"
     And I press "Update Story"
-    Then I should see "Story Type: epic"
+    Then I should see "Story Type: Epic"
 
 
