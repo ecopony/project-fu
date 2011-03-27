@@ -9,6 +9,10 @@
   %br
   = f.select(:story_type, Story.story_type_array)
 %p
+  = f.label :state
+  %br
+  = f.select(:state, Story.state_array)
+%p
   = f.label :estimate
   %br
   = f.select(:estimate, @project.estimate_array, { :selected => @story.estimate, :include_blank => true })

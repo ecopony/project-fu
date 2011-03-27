@@ -2,7 +2,10 @@
 
 %p
   %strong Story Type:
-  = @story.story_type
+  = @story.story_type.humanize
+%p
+  %strong State:
+  = @story.state.humanize
 %p
   %strong Estimate:
   = @story.estimate
