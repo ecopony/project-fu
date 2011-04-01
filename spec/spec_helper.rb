@@ -25,3 +25,19 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 end
+
+def current_user
+  @current_user ||= Factory.create(:user)
+end
+
+def user_session
+  @current_user_session ||= mock_model(UserSession, {:user => current_user})
+end
+
+def login
+  UserSession.stub!(:find).and_return(user_session)
+end
+
+def logout
+  @user_session = nil
+end

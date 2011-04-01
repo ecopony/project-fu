@@ -45,6 +45,20 @@ class Project < ActiveRecord::Base
     unit_scale.strip.split(",").map { |estimate| Integer(estimate) }
   end
 
+  def reorder_stories(ids)
+    begin
+      ids = ids.collect(&:to_s)
+      stories.each do |story|
+        story.position = ids.index(story.id.to_s) + 1
+        story.save
+      end
+      return true
+    rescue Exception => ex
+      logger.error(ex)
+      return false
+    end
+  end
+
   private
 
   def validate_unit_scale

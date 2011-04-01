@@ -38,6 +38,11 @@ a {
   border: solid 1px #C66;
 }
 
+#ajax-error {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
 .fieldWithErrors {
   display: inline;
 }

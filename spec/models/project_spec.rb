@@ -4,8 +4,8 @@ describe Project do
 
   before(:each) do
     @valid_attributes = {
-        :name => "Project name",
-        :unit_scale => "0, 1, 2, 3, 5, 8, 13, 20, 40, 100"
+      :name => "Project name",
+      :unit_scale => "0, 1, 2, 3, 5, 8, 13, 20, 40, 100"
     }
   end
 
@@ -127,6 +127,36 @@ describe Project do
       project.estimate_array.is_a?(Array).should be_true
       project.estimate_array.each { |estimate| estimate.is_a?(Integer).should be_true }
     end
+  end
+
+  describe "reordering" do
+
+    before(:each) do
+      @project = Factory.create(:project)
+      @story_one = Factory.create(:story, :project => @project, :position => 1)
+      @story_two = Factory.create(:story, :project => @project, :position => 2)
+    end
+
+    it "should reorder into the order of the ids provided" do
+      @project.reorder_stories([@story_two.id.to_s, @story_one.id.to_s])
+      @story_one.reload.position.should == 2
+      @story_two.reload.position.should == 1
+    end
+
+    it "should reorder when provided integers instead of strings" do
+      @project.reorder_stories([@story_two.id, @story_one.id])
+      @story_one.reload.position.should == 2
+      @story_two.reload.position.should == 1
+    end
+
+    it "should return true when successful" do
+      @project.reorder_stories([@story_two.id.to_s, @story_one.id.to_s]).should be_true
+    end
+
+    it "should return false when it fails" do
+      @project.reorder_stories(nil).should be_false
+    end
+
   end
 
 end

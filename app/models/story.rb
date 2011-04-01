@@ -9,8 +9,7 @@ class Story < ActiveRecord::Base
   validates :story_type, :presence => true
   validates :state, :presence => true
 
-  acts_as_list :scope => :project
-  default_scope order('position ASC')
+  acts_as_list :scope => :project_id
 
   class << self
     def story_type_array

@@ -1,0 +1,13 @@
+<%- message = "An error occurred" unless defined?(message) %>
+
+var ajaxError = $("#ajax-error")
+ajaxError.html("<%= escape_javascript(message) %>");
+ajaxError.addClass('ui-state-error');
+setTimeout(function() {
+    ajaxError.fadeOut(3000, function() {
+        ajaxError.html("&nbsp;");
+        ajaxError.removeClass('ui-state-error');
+        ajaxError.show();
+    });
+}, 3000);
+

@@ -41,7 +41,8 @@ class StoriesController < ApplicationController
         format.html { redirect_to project_story_url(@project, @story) }
         format.js {}
       else
-        render :action => 'edit'
+        format.html { render :action => 'edit' }
+        format.js { render :partial => '/ajax_error', :locals => { :message => "Story could not be updated." } }
       end
     end
 
@@ -55,11 +56,16 @@ class StoriesController < ApplicationController
   end
 
   def reorder
-    @project.stories.each do |story|
-      story.position = params['stories'].index(story.id.to_s) + 1
-      story.save
+    respond_to do |format|
+      format.js do
+        if @project.reorder_stories(params['stories'])
+          render :nothing => true
+        else
+          render :partial => '/ajax_error', :locals => { :message => "Error reordering stories." }
+        end
+      end
     end
-    render :nothing => true
+
   end
 
 end
