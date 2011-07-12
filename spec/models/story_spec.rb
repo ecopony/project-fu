@@ -120,4 +120,62 @@ describe Story do
     end
 
   end
+
+  describe "calculating estimate values" do
+
+    before(:each) do
+      @story = Story.new(@valid_attributes)
+      @story.project_id = @project.id
+    end
+
+    it "should save and keep best/worst/expected/deviance/variance nil if no estimate is provided" do
+      @story.save.should be_true
+      @story.best_case_estimate.should be_nil
+      @story.worst_case_estimate.should be_nil
+      @story.expected_case_estimate.should be_nil
+      @story.estimate_deviation.should be_nil
+      @story.estimate_variance.should be_nil
+    end
+
+    it "should use the same number for best and worst case when one number is provided" do
+      @story.estimate = 5
+      @story.save
+      @story.reload
+      @story.best_case_estimate.should == 5
+      @story.worst_case_estimate.should == 5
+      @story.expected_case_estimate.should == 5
+      @story.estimate_deviation.should == 0
+      @story.estimate_variance.should == 0
+    end
+
+    it "should return the low and then the high number when separated by a dash" do
+      @story.estimate = '3-8'
+      @story.save
+      @story.reload
+      @story.best_case_estimate.should == 3
+      @story.worst_case_estimate.should == 8
+      @story.expected_case_estimate.should == 5.5
+      @story.estimate_deviation.should == 2.5
+      @story.estimate_variance.should == 6.25
+    end
+
+    it "should set an error if the two estimates are not separated by a dash" do
+      @story.estimate = '3+8'
+      @story.save
+      @story.errors[:estimate].include?("cannot include non-integers").should be_true
+    end
+
+    it "should set an error if more than two elements result from the split" do
+      @story.estimate = '3-8-12'
+      @story.save
+      @story.errors[:estimate].include?("cannot include more than two numbers for a range").should be_true
+    end
+
+    it "should return nil and set error if any of the elements are not numbers" do
+      @story.estimate = 'x-2'
+      @story.save
+      @story.errors[:estimate].include?("cannot include non-integers").should be_true
+    end
+
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110326213556) do
+ActiveRecord::Schema.define(:version => 20110509231247) do
 
   create_table "project_memberships", :force => true do |t|
     t.integer  "project_id", :null => false
@@ -44,17 +44,22 @@ ActiveRecord::Schema.define(:version => 20110326213556) do
   add_index "projects", ["creator_id"], :name => "index_projects_on_creator_id"
 
   create_table "stories", :force => true do |t|
-    t.string   "title",           :null => false
-    t.string   "story_type",      :null => false
-    t.integer  "estimate"
-    t.integer  "requested_by_id", :null => false
+    t.string   "title",                  :null => false
+    t.string   "story_type",             :null => false
+    t.string   "estimate"
+    t.integer  "requested_by_id",        :null => false
     t.integer  "owned_by_id"
     t.text     "description"
-    t.integer  "project_id",      :null => false
+    t.integer  "project_id",             :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
     t.string   "state"
+    t.integer  "best_case_estimate"
+    t.integer  "worst_case_estimate"
+    t.float    "expected_case_estimate"
+    t.float    "estimate_deviation"
+    t.float    "estimate_variance"
   end
 
   add_index "stories", ["owned_by_id"], :name => "index_stories_on_owned_by_id"
