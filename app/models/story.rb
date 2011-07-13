@@ -98,7 +98,7 @@ class Story < ActiveRecord::Base
   end
 
   def set_variance
-    self.estimate_variance = estimate_deviation * estimate_deviation
+    self.estimate_variance = estimate_deviation**2
   end
 
   def non_view_only_member?(user)
